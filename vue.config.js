@@ -16,7 +16,7 @@ module.exports = {
         .set('public', resolve('src/components/public'))
   },
     devServer: {
-      port: 8090,
+      port: 8021,
       open: false, // 是否自动打开浏览器页面
       proxy: {
           '/api': {
