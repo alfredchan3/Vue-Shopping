@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { Store } from 'vuex';
 
 const Home = () => import('@/views/Home')
 const City = () => import('@/views/City')
