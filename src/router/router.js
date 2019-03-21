@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const Home = () => import('@/views/Home')
+const Category = () => import('@/views/Category')
 const City = () => import('@/views/City')
 
 Router.prototype.animate = 0     // 定义路由跳转动画
@@ -17,6 +18,7 @@ const router = new Router({
   routes: [
     { path: '/', redirect: '/home' },                 // 首页
     { path: '/home', name: 'home', component: Home, meta: { keepAlive: true } }, // 首页
+    { path: '/category', name: 'Category', component: Category, meta: { keepAlive: true } },// tab分类
     { path: '*', redirect: '/home' }, // 首页
     { path: '/city', component: City, name: 'City' },   // 城市选择
   ]
