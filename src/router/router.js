@@ -17,7 +17,7 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     { path: '/', redirect: '/home' },                 // 首页
-    { path: '/home', name: 'home', component: Home, meta: { keepAlive: true } }, // 首页
+    { path: '/home', name: 'Home', component: Home, meta: { keepAlive: true } }, // 首页
     { path: '/category', name: 'Category', component: Category, meta: { keepAlive: true } },// tab分类
     { path: '*', redirect: '/home' }, // 首页
     { path: '/city', component: City, name: 'City' },   // 城市选择
