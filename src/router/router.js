@@ -5,6 +5,7 @@ const Home = () => import('@/views/Home')
 const Category = () => import('@/views/Category')
 const City = () => import('@/views/City')
 const ShoppingCart = () => import('@/views/ShoppingCart')
+const My = () => import('@/views/My')
 
 Router.prototype.animate = 0     // 定义路由跳转动画
 Vue.use(Router)
@@ -22,6 +23,7 @@ const router = new Router({
     { path: '/category', name: 'Category', component: Category, meta: { keepAlive: true } },// tab分类
     { path: '/shoppingCart', name: 'ShoppingCart', component: ShoppingCart },// tab购物车
     { path: '*', redirect: '/home' }, // 首页
+    { path: '/my', name: 'My', component: My },         // 个人中心
     { path: '/city', component: City, name: 'City' },   // 城市选择
   ]
 })
