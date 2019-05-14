@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "vue-cli-service serve --mode stage",
+    "build": "vue-cli-service build --modern"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -32,6 +31,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-service": "^3.3.0",
+    "babel-plugin-import": "^1.11.0",
     "compression-webpack-plugin": "^2.0.0",
     "cssnano-preset-advanced": "^4.0.6",
     "less": "^3.9.0",
@@ -72,5 +72,10 @@
         }
       }
     }
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }

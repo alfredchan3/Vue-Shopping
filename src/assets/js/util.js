@@ -77,34 +77,25 @@ const getRandomInt = function (min, max) {
  * @return Function 延迟执行的方法
  */
 // atleast要大于dalay
-const throttle = (fn, dalay = 1000) => {
-    let flag = false
+const throttle = (fn, dalay, atleast = 0) => {
+    let timer = null
+    let previous = null
     return (...args) => {
-        if (flag) return
-        flag = true
-        fn(args)
-        setTimeout(() => {
-            flag = false
-        }, dalay);
+        let now = +new Date()	//获取当前时间戳
+        !previous ? now : previous
+        if (atleast && now - previous > atleast) {
+            fn.apply(this, args)
+            // 重置上一次开始时间为本次结束时间
+            previous = now
+            clearTimeout(timer)
+        } else {
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                fn.apply(this, args)
+                previous = null
+            }, dalay)
+        }
     }
-    // let timer = null
-    // let previous = null
-    // return (...args) => {
-    //     let now = +new Date()	//获取当前时间戳
-    //     !previous ? now : previous
-    //     if (atleast && now - previous > atleast) {
-    //         fn.apply(this, args)
-    //         // 重置上一次开始时间为本次结束时间
-    //         previous = now
-    //         clearTimeout(timer)
-    //     } else {
-    //         clearTimeout(timer)
-    //         timer = setTimeout(() => {
-    //             fn.apply(this, args)
-    //             previous = null
-    //         }, dalay)
-    //     }
-    // }
 }
 
 /**

@@ -1,36 +1,37 @@
 <template>
-  <div class="home page-tab">
-    <div class="header">
-      <van-row>
-        <div @click="cityClick">
-          <van-col span="5" class="city">{{city}}  ▼</van-col>
+    <div class="home page-tab">
+        <div class="header">
+            <van-row>
+                <div @click="cityClick" >
+                <van-col span="5" class="city">{{city}} ▼</van-col>
+                </div>
+                <van-col span="19" >
+                    <div class="search-box" ref="searchBox">
+                        <van-icon name="search" class="icon"/>
+                        <input ref="input"  @focus="focus"  class="box" v-model="value" type="text" placeholder="请输入搜索关键词">
+                        <van-icon name="clear" @click="value=''"  v-show="value" class="clear"/>
+                    </div>
+                    <transition name="bouncee">
+                        <div class="quxiao" v-show="query" @click="closeSearch">取消</div>
+                    </transition>
+                </van-col>
+            </van-row>
         </div>
-        <van-col span="19" >
-            <div class="search-box" ref="searchBox">
-              <van-icon name="search" class="icon"/>
-              <input ref="input"  @focus="focus"  class="box" v-model="value" type="text" placeholder="请输入搜索关键词">
-              <van-icon name="clear" @click="value=''"  v-show="value" class="clear"/>
-            </div>
-            <transition name="bouncee">
-              <div class="quxiao" v-show="query" @click="closeSearch">取消</div>
-            </transition>
-        </van-col>
-      </van-row>
-    </div>
     <div v-show="!showFlag"  class="content" @touchmove.prevent='touchmove' @touchstart.prevent='touchstart' @touchend.prevent='touchend'>
         <Scroll v-if="recommend" :pullup='true' @scrollToEnd='scrollToEnd2' :listenScroll='true' @scroll='scroll' :probeType='probeType'  :data='recommend.hotGoods' class="content-scroll" :bounce='bounce' ref="scroll">
             <div>
-              <HomeSwiper :slides='recommend.slides'/>
-              <HomePanl :category='recommend.category' @item='item' :advertesPicture='recommend.advertesPicture.PICTURE_ADDRESS'/>
-              <HomeRecommend :recommend='recommend.recommend'/>
-              <HomeFoor :floorName='floorName.floor1' :foor1='recommend.floor1' :num='num'/>
-              <HomeFoor :floorName='floorName.floor2' :foor1='recommend.floor2' :num='num+1'/>
-              <HomeFoor :floorName='floorName.floor3' :foor1='recommend.floor3' :num='num+2'/> 
-              <HomeHot :hot='recommend.hotGoods'/>
+                <HomeSwiper :slides='recommend.slides'/>
+                <HomePanl :category='recommend.category' @item='item' :advertesPicture='recommend.advertesPicture.PICTURE_ADDRESS'/>
+                <HomeRecommend :recommend='recommend.recommend'/>
+                <HomeFoor :floorName='floorName.floor1' :foor1='recommend.floor1' :num='num'/>
+                <HomeFoor :floorName='floorName.floor2' :foor1='recommend.floor2' :num='num+1'/>
+                <HomeFoor :floorName='floorName.floor3' :foor1='recommend.floor3' :num='num+2'/> 
+                <HomeHot :hot='recommend.hotGoods'/>
             </div>
         </Scroll>
         <dir v-show="touch.init">
          <BaseRefresh :opacity='opac' :transformY='transformY' :rotate='rotate' :isRotate='isRotate' :trans='trans'/>
+
         </dir>
      </div>
         <!-- <BaseLoding :showFlag='showFlag'/> -->
@@ -38,49 +39,51 @@
         <div v-show="searchLoading" class="van-loading van-loading--circular van-loading--white" style="color: white;z-index:999"><span class="van-loading__spinner van-loading__spinner--circular"><svg viewBox="25 25 50 50" class="van-loading__circular"><circle cx="50" cy="50" r="20" fill="none"></circle></svg></span></div>
         <BaseFooter active='0'/>
         <router-view/>
-  </div>
+</div>
+
+
 </template>
 
 <script>
-// @ is an alias to /src
 import HomeRecommend from '@/components/home/HomeRecommend'
 import HomeFoor from '@/components/home/HomeFoor'
 import HomeHot from '@/components/home/HomeHot'
 import HomeSearch from '@/components/home/HomeSearch'
 import HomeSwiper from '@/components/home/HomeSwiper'
 import HomePanl from '@/components/home/HomePanl'
-import BaseRefresh from '@/components/home/BaseRefresh'
 import Scroll from 'public/Scroll'
 import BaseFooter from 'public/BaseFooter'
+import BaseRefresh from '@/components/home/BaseRefresh'
 import {vuexData,page} from 'js/mixin'
 import {throttle} from 'js/util'
 export default {
-  name: 'home',
-  mixins: [page,vuexData],
-  data () {
-    return {
-      value: '',
-      recommend: '',
-      num: 1,
-      bounce: {
-        top:false,
-      },
-      probeType: 3,
-      floorName: '',
-      touch: {},
-      transformY: 0,
-      rotate: 0,
-      isRotate: false,
-      trans: false,
-      opac: 0,
-      currentCity: '',
-      query: false,       // 显示搜索
-      len: false,        // 是否含有搜索结果
-      page: 1,
-      searchLoading: false,
-    }
-  },
-  components: {
+    name: "Home",
+    mixins: [page,vuexData],
+    data() {
+        return {
+            value: '',
+            recommend: '',
+            num: 1,
+            bounce: {
+                top:false,
+            },
+            probeType: 3,
+            floorName: '',
+            touch: {},
+            transformY: 0,
+            rotate: 0,
+            isRotate: false,
+            trans: false,
+            opac: 0,
+            currentCity: '',
+            query: false,       // 显示搜索
+            len: false,        // 是否含有搜索结果
+            page: 1,
+            searchLoading: false,
+        }
+    },
+    
+    components: {
         HomeRecommend,
         HomeFoor,
         HomeSearch,
@@ -90,14 +93,16 @@ export default {
         HomeSwiper,
         HomePanl,
         BaseFooter,
-  },
-  methods: {
-    scroll (e) {
-        Math.abs(e.y) == 0 ? this.touch.scroll = true : this.touch.scroll = false
-        if (this.transformY > 0) {
-            this.$refs.scroll.disable()
-        }
-    },touchstart(e) {
+    },
+    methods: {
+        scroll(e) {
+            Math.abs(e.y) == 0 ? this.touch.scroll = true : this.touch.scroll = false
+            if (this.transformY > 0) {
+                this.$refs.scroll.disable()
+            }
+        },
+        
+        touchstart(e) {
             this.isRotate = false
             this.trans = false
             this.touch.init = true
@@ -198,93 +203,94 @@ export default {
         },
         //搜索
         async search(value,flag) {
-        try {
-            if (this.isLocked()) return // 必须等待上一次请求完成
-            this.locked()//开始请求之前锁住
-            this.searchLoading = true
-            this.len = false
-            const {data} = await this.Api.search(value,this.page)
-            if (data.code == 200) {
-                this.setTotal(data.data.count)  // 总条数
+            try {
+                if (this.isLocked()) return // 必须等待上一次请求完成
+                this.locked()//开始请求之前锁住
+                this.searchLoading = true
+                this.len = false
+                const {data} = await this.Api.search(value,this.page)
+                if (data.code == 200) {
+                    this.setTotal(data.data.count)  // 总条数
+                    this.unLocked() // 解锁
+                    this.searchLoading = false
+                    if (flag) {
+                        this.setNewData(data.data.list)
+                    } else {
+                        this.dataArr = data.data.list
+                    }
+                    if (!this.dataArr.length) {
+                        this.len = true
+                    }
+                }
+            } catch (error) {
                 this.unLocked() // 解锁
-                this.searchLoading = false
-                if (flag) {
-                    this.setNewData(data.data.list)
-                } else {
-                    this.dataArr = data.data.list
-                }
-                if (!this.dataArr.length) {
-                    this.len = true
-                }
+                this.len = false
+                this.$toast('网络错误')
             }
-        } catch (error) {
-            this.unLocked() // 解锁
-            this.len = false
-            this.$toast('网络错误')
-        }
             
-    },
-    // 取消搜索
-    onCancel() {
-        this.value = ''
-        
-    },
-    focus(){
-        let width =  '85%'
-        this.tran(width)
-        this.query = true
-    },
-    closeSearch(){
-        let width =  '100%'
-        this.tran(width)
-        this.query = false
-        setTimeout(() => {
+        },
+        // 取消搜索
+        onCancel() {
             this.value = ''
-        }, 300);
-    },
-    tran(width) {
-        this.$refs.searchBox.style.width = width;
-        this.$refs.searchBox.style['transitionDuration'] = '.3s'
-    },
-    vals(val) {
-        this.value = val
-    } ,
-    scrollToEnd() {
-        if (this.dataArr.length >= 20) {
-            if (this.hasMore()) {
-                this.page++
-                this.search(this.value,true)
-            } else {
-                this.$toast('没有很多数据了~~')
+            
+        },
+        focus(){
+            let width =  '85%'
+            this.tran(width)
+            this.query = true
+        },
+        closeSearch(){
+            let width =  '100%'
+            this.tran(width)
+            this.query = false
+            setTimeout(() => {
+                this.value = ''
+            }, 300);
+        },
+        tran(width) {
+            this.$refs.searchBox.style.width = width;
+            this.$refs.searchBox.style['transitionDuration'] = '.3s'
+        },
+        vals(val) {
+            this.value = val
+        } ,
+        scrollToEnd() {
+            if (this.dataArr.length >= 20) {
+                if (this.hasMore()) {
+                    this.page++
+                    this.search(this.value,true)
+                } else {
+                    this.$toast('没有很多数据了~~')
+                }
             }
-        }
+        },
+        scrollToEnd2() {
+            this.$refs.scroll.refresh()
+        },
     },
-    scrollToEnd2() {
-        this.$refs.scroll.refresh()
+    
+    created() {
+        this.getHome()
+        // 节流函数处理
+        this.$watch('value',throttle(() => {
+            this.dataArr = []
+            if (this.value) {
+                this.page = 1
+                this.search(this.value,false)
+            } 
+        },800))
     },
-},
-
-  created() {
-      this.getHome()
-      // 节流函数处理
-      this.$watch('value',throttle(() => {
-          this.dataArr = []
-          if (this.value) {
-              this.page = 1
-              this.search(this.value,false)
-          } 
-      },800))
-  },
-  watch: {
-    city() {
-      this.getHome()
-    },     
-  }
+    watch: {
+        city() {
+            this.getHome()
+        },
+        
+    }
 }
 </script>
-
 <style lang="less" scoped>
-@color: #f2f2f2;
+@color: #F2F2F2;
+
 .header {
     line-height: 44px;
     position: relative;

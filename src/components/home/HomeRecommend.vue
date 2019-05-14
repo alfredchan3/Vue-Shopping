@@ -51,17 +51,15 @@ export default {
     methods: {
         // 加入购物车
         async addShops(val) {
-            if (!this.userName) {
+            if (!this.UserName) {
                 this.$router.push({name:'Login'})
                 return
             }
             try {
-                const {data} = await this.Api.addShop(val.goodsId)
-                if (data.code == 200) {
-                    this.$toast(data.msg)
-                }
+                var {data} = await this.Api.addShop(val.goodsId)
+                this.$toast(data.msg)
             } catch (error) {
-                this.$toast('网络错误')
+                this.$toast(error.msg)
             }
             
         }

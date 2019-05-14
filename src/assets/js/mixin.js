@@ -20,7 +20,8 @@ export const vuexData = {
             'shopOrderList',
             'temporaryAddress',
             'city',
-            'searchHistoryList'
+            'searchHistoryList',
+            'token'
         ])
     },
 
@@ -42,7 +43,8 @@ export const vuexData = {
             'deleteOne',
             'selectCity',
             'setSearchHistory',
-            'clearSearchHistory'
+            'clearSearchHistory',
+            'setToken'
         ]),
 
         //返回上一页或者首页

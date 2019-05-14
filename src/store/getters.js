@@ -8,6 +8,8 @@ export const shopOrderList = state => state.shopOrderList
 export const temporaryAddress = state => state.temporaryAddress
 export const city = state => state.city
 export const searchHistoryList = state => state.searchHistoryList
+export const token = state => state.token
+
 
 
 

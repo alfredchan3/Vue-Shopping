@@ -1,4 +1,4 @@
-import {tab,address,recentlyBrowse,city,searchHistory} from 'js/cache'
+import {tab,address,recentlyBrowse,city,searchHistory,token} from 'js/cache'
 const state = {
     category: tab.getTab(),   //分类条目
     categoryTabList:{}, // 分类页面tab对应数据缓存
@@ -9,7 +9,8 @@ const state = {
     shopOrderList: [],      // 购物车去结算的时候存入vuex
     temporaryAddress: '',   // 结算时候选择的地址
     city: city.getCity(),
-    searchHistoryList: searchHistory.getHistory()   // 搜索历史
+    searchHistoryList: searchHistory.getHistory(),   // 搜索历史
+    token: token.getToken(),      //判断用户有没有登录
 }
 
 export default state

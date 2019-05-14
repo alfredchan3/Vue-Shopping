@@ -7,6 +7,7 @@ import {
     AddressList, AddressEdit, Area, Button, Popup, Field, DatetimePicker, Picker,
     Rate, Uploader, Loading, NavBar
 } from 'vant'
+
 Vue.use(Tabbar).use(TabbarItem).use(Tab).use(Tabs).use(Sku)
     .use(Tag).use(Col).use(Icon).use(Cell).use(CellGroup)
     .use(Swipe).use(SwipeItem).use(GoodsAction)

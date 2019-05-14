@@ -220,7 +220,7 @@ export default {
 
     .scroll {
         position: fixed;
-        top: 83px;
+        top: 93px;
         bottom: 0px;
         left: 0;
         right: 0;

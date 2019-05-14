@@ -29,6 +29,9 @@ const matutaions = {
     },
     [types.SEARCH_HISTORY_LIST](state,searchHistoryList) {
         state.searchHistoryList = searchHistoryList
+    },
+    [types.TOKEN](state,token) {
+        state.token = token
     }
 }
 

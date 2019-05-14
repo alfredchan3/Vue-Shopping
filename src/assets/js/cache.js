@@ -6,7 +6,7 @@ const ADDRESS = 'address'     // 地址列表
 const RECENTLY_BROWSE = 'browse'  // 最近浏览
 const CITY = 'city'         // 默认城市
 const SEARCH_HISYSTORY = 'searchHistory' // 搜索历史
-
+const TOKEN = 'token'
 export const tab = {
     getTab() {
         return storage.get(TAB_LIST,[])
@@ -110,3 +110,15 @@ export const searchHistory = {
     }
 }
 
+export const token = {
+    getToken() {
+        return storage.get(TOKEN,'')
+    },
+
+    setToken(token) {
+        return storage.set(TOKEN,token)
+    },
+    clearToken() {
+        return storage.remove(TOKEN)
+    }
+}
