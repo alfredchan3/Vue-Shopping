@@ -39,5 +39,19 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  
+.browse-wrap
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom 0
+  z-index 500
+  background #fff
+  .scroll
+    position fixed
+    top 40px
+    bottom 0px
+    left 0
+    right 0
+    overflow hidden
 </style>
