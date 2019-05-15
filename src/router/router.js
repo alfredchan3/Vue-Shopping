@@ -10,7 +10,8 @@ const Details = () => import('@/views/Details')
 const Login = () => import('@/views/Login')
 const Browse = () => import('@/views/Browse')
 const Collection = () => import('@/views/Collection')
-
+const MyOrder = () => import('@/views/MyOrder')
+import store from '../store'
 Router.prototype.animate = 0     // 定义路由跳转动画
 Vue.use(Router)
 
@@ -33,6 +34,7 @@ const router = new Router({
     { path: '/login', name: 'Login', component: Login, meta: { requireAuth: false} }, // 登入
     { path: '/browse', name: 'Browse', component: Browse },      // 我的浏览记录
     { path: '/collection', name: 'Collection', component: Collection },// 我的收藏
+    { path: '/order', component: MyOrder, name: 'MyOrder' },     // 我的订单
   ]
 })
 
@@ -56,15 +58,27 @@ const TITLE = {
   ShoppingPayMent: '订单结算',
 }
 
-/*router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
   document.title = TITLE[to.name]
-  // 如果已经登录了就不让进这个页面
-  if (Store.state.userName && to.meta.requireAuth === false) {
-    next({ path: '/home' })
+  // if (to.meta.requireAuth === false) { 
+  //     /* 
+  //       从Vuex拿出token码，说明已登陆
+  //     */
+  //     if (store.state.token) {
+  //         next({path: '/home',})
+  //     } else {
+  //         next() 
+  //     }
+  // } else { 
+  //     next();
+  // }
+   // 如果已经登录了就不让进这个页面
+   if (store.state.userName && to.meta.requireAuth === false) {
+      next({ path: '/home' })
   } else {
-    next()
+      next()
   }
-  next()
-})*/
+  
+})
 
 export default router
