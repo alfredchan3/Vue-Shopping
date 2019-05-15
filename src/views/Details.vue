@@ -572,7 +572,7 @@ export default {
         justify-content: space-between;
         .name {
           font-size: 14px;
-          olor: grey;
+          color: grey;
         }
         .num {
           color: gray;
