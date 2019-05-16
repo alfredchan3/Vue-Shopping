@@ -12,6 +12,7 @@ const Browse = () => import('@/views/Browse')
 const Collection = () => import('@/views/Collection')
 const MyOrder = () => import('@/views/MyOrder')
 const Address = () => import('@/views/Address')
+const AddressEdit = () => import('@/views/AddressEdit')
 import store from '../store'
 Router.prototype.animate = 0     // 定义路由跳转动画
 Vue.use(Router)
@@ -37,6 +38,7 @@ const router = new Router({
     { path: '/collection', name: 'Collection', component: Collection },// 我的收藏
     { path: '/order', component: MyOrder, name: 'MyOrder' },     // 我的订单
     { path: '/address', name: 'Address', component: Address }, // 地址
+    { path: '/addressEdit', name: 'AddressEdit', component: AddressEdit }, // 新增和编辑地址
   ]
 })
 
