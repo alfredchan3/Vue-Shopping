@@ -14,6 +14,9 @@ const MyOrder = () => import('@/views/MyOrder')
 const Address = () => import('@/views/Address')
 const AddressEdit = () => import('@/views/AddressEdit')
 const ShoppingPayMent = () => import('@/views/ShoppingPayMent')
+const Evaluate = () => import('@/views/Evaluate')
+const Aevaluated = () => import('@/views/Aevaluated')
+const Rate = () => import('@/views/Rate')
 import store from '../store'
 Router.prototype.animate = 0     // 定义路由跳转动画
 Vue.use(Router)
@@ -41,6 +44,9 @@ const router = new Router({
     { path: '/address', name: 'Address', component: Address }, // 地址
     { path: '/addressEdit', name: 'AddressEdit', component: AddressEdit }, // 新增和编辑地址
     { path: '/shoppingPayMent', name: 'ShoppingPayMent', component: ShoppingPayMent }, // 支付页面
+    { path: '/evaluate', component: Evaluate, name: 'Evaluate' }, // 我的评价记录
+    { path: '/aevaluated', component: Aevaluated, name: 'Aevaluated', props: (route) => ({ id: route.query.id }) },// 查看已经评价
+    { path: '/rate', component: Rate, name: 'Rate', props: (route) => ({ id: route.query.id }) },            // 评价商品
   ]
 })
 
