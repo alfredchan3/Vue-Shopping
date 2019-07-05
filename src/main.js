@@ -5,8 +5,6 @@ import store from './store'
 import Api from './Api'
 Vue.prototype.Api = Api           // 请求接口类
 import './vant'                   // 有赞组件库
-import FastClick from 'fastclick' // 解决300毫秒延时
-FastClick.attach(document.body)
 // import NProgress from 'nprogress' // 路由进度条
 // import 'nprogress/nprogress.css'
 import 'vant/lib/index.css'
