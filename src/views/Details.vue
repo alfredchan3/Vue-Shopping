@@ -10,7 +10,7 @@
       <div>
         <van-swipe class="goods-swipe" :autoplay="3000" @change="onChange" :touchable="false">
           <van-swipe-item>
-            <img :src="goods.image" @click="showImagePreview" ref="swiperImg" :onerror="defaultImg">
+            <img :src="goods.image" @click="showImagePreview" ref="swiperImg" :onerror="defaultImg" />
           </van-swipe-item>
           <van-swipe-item>
             <img
@@ -18,7 +18,7 @@
               @click="showImagePreview"
               ref="swiperImg2"
               :onerror="defaultImg"
-            >
+            />
           </van-swipe-item>
           <div class="custom-indicator" slot="indicator">{{ current + 1 }}/2</div>
         </van-swipe>
@@ -70,8 +70,8 @@
                           :onerror="defaultImg"
                           alt
                           srcset
-                        >
-                        <img v-else :src="val.comment_avatar" alt srcset>
+                        />
+                        <img v-else :src="val.comment_avatar" alt srcset />
                       </div>
                       <div class="desc border-bottom">
                         <p class="fist">
@@ -80,7 +80,7 @@
                           <span class="num">{{val.comment_time}}</span>
                         </p>
                         <p class="timer">
-                          <van-rate v-model="val.rate" readonly :size="12" color="#e0322b"/>
+                          <van-rate v-model="val.rate" readonly :size="12" color="#e0322b" />
                         </p>
                         <p class="cont">{{val.content}}</p>
                         <div class="img-content" :class="setImgContentClass(val.images.length)">
@@ -90,7 +90,7 @@
                             :class="setImgClass(val.images.length)"
                             :key="img"
                             :src="img"
-                          >
+                          />
                         </div>
                       </div>
                     </div>
@@ -105,9 +105,9 @@
     </Scroll>
     <transition name="bounce2">
       <div class="sku" v-show="showBase" :class="{sku2:showBase}">
-        <van-icon name="close" class="close" @click="showBase=false"/>
+        <van-icon name="close" class="close" @click="showBase=false" />
         <div class="goods-top border-bottom">
-          <img :src="goods.image_path" class="image_path" :onerror="defaultImg">
+          <img :src="goods.image_path" class="image_path" :onerror="defaultImg" />
           <div class="goods-right">
             <p class="goods-name">{{goods.name}}</p>
             <p class="pic">
@@ -124,7 +124,7 @@
               <span>每人限购50件</span>
             </p>
           </div>
-          <AdditionAndSubtraction @count="count"/>
+          <AdditionAndSubtraction @count="count" />
         </div>
         <div class="bottom" @click="PurchaseImmediately">立即购买</div>
       </div>
@@ -133,8 +133,8 @@
       <div class="sku-layer" v-show="showBase" @click="showBase=false"></div>
     </transition>
 
-    <BaseLoding :showFlag="showFlag"/>
-    <Back @back="back"/>
+    <BaseLoding :showFlag="showFlag" />
+    <Back @back="back" />
   </div>
 </template>
 
@@ -368,6 +368,7 @@ export default {
   },
   activated() {
     this.goodsItem(this.id);
+    this.isCollection(this.id);
   },
 
   deactivated() {
