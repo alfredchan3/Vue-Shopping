@@ -111,20 +111,20 @@ export default {
 
         //单选勾住后全选
         itemChange(val) {
-            // let select = this.shopList.filter((v, o) => {
-            //     return v.check == true;
-            // });
-            // select.length == this.shopList.length
-            //     ? (this.allCheck = true)
-            //     : (this.allCheck = false);
-            // for (let i = 0; i < this.shopList.length; i++) {
-            //     if (this.shopList[i].check) {
-            //         this.deleteFlag = true;
-            //         break;
-            //     } else {
-            //         this.deleteFlag = false;
-            //     }
-            // }
+            let select = this.shopList.filter((v, o) => {
+                return v.check == true;
+            });
+            select.length == this.shopList.length
+                ? (this.allCheck = true)
+                : (this.allCheck = false);
+            for (let i = 0; i < this.shopList.length; i++) {
+                if (this.shopList[i].check) {
+                    this.deleteFlag = true;
+                    break;
+                } else {
+                    this.deleteFlag = false;
+                }
+            }
         },
 
         async getShopList() {
