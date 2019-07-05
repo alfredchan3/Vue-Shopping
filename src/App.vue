@@ -36,6 +36,7 @@ export default {
         async keeplogin() {
             try {
                 const { data } = await this.Api.keeplogin();
+                
                 if (data.code == 200) {
                     this.setName(data.userInfo);
                 }

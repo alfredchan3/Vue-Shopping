@@ -8,18 +8,18 @@ export default class Api {
      * keeplogin            保持登录
      */
     static recommend() {
-        return axios.get('/recommend')
+        return axios('/recommend', 'get')
     }
 
     static search(value, page = 1) {
-        return axios.post('/search', {
+        return axios('/search', 'post', {
             value,
             page
         })
     }
 
     static keeplogin() {
-        return axios.post('/keeplogin')
+        return axios('/keeplogin')
     }
     // ===============================================================================================================
     /**
@@ -27,7 +27,7 @@ export default class Api {
      * category 分类查询  参数id：默认分类的id
      */
     static category(id) {
-        return axios.get(`/classification?mallSubId=${id}`)
+        return axios(`/classification?mallSubId=${id}`, 'get')
     }
 
     // ===============================================================================================================
@@ -38,11 +38,11 @@ export default class Api {
      * deleteShop   购物车商品删除      参数 id：需要删除的商品id
      */
     static getCard() {
-        return axios.post(`/getCard`)
+        return axios(`/getCard`)
     }
 
     static editCart(count, id, mallPrice) {
-        return axios.post('/editCart', {
+        return axios('/editCart', 'post', {
             count,
             id,
             mallPrice
@@ -50,7 +50,7 @@ export default class Api {
     }
 
     static deleteShop(id) {
-        return axios.post('/deleteShop', id)
+        return axios('/deleteShop', 'post', id)
     }
 
     // ===============================================================================================================
@@ -59,7 +59,7 @@ export default class Api {
      * placeOrder 提交订单 参数：address:收货地址,tel:电话，orderId：所有商品的id，totalPrice：总价格,idDirect:用来判断是购物车结算还是直接购买,count:商品数量
      */
     static placeOrder({ ...args }) {
-        return axios.post('/order', args)
+        return axios('/order', 'post', args)
     }
 
     // ===============================================================================================================
@@ -72,23 +72,23 @@ export default class Api {
      * addShop          加入购物车             参数：  id:商品的id
      */
     static goodOne(id, page = 1) {
-        return axios.get(`/goods/one?id=${id}&page=${page}`)
+        return axios(`/goods/one?id=${id}&page=${page}`, 'get')
     }
 
     static collection(goods) {
-        return axios.post('/collection', goods)
+        return axios('/collection', 'post', goods)
     }
 
     static cancelCollection(id) {
-        return axios.post('/cancelCollection', { id })
+        return axios('/cancelCollection', 'post', { id })
     }
 
     static isCollection(id) {
-        return axios.post(`/isCollection`, { id })
+        return axios(`/isCollection`, 'post',{ id })
     }
 
     static addShop(id) {
-        return axios.post(`/addShop`, { id })
+        return axios(`/addShop`, 'post',{ id })
     }
     // ===============================================================================================================
 
@@ -101,23 +101,23 @@ export default class Api {
      * comment  商品评论
      */
     static loginOut() {
-        return axios.post(`/loginOut`)
+        return axios(`/loginOut`)
     }
 
     static user() {
-        return axios.post(`/queryUser`)
+        return axios(`/queryUser`)
     }
 
     static saveUser({ ...args }) {
-        return axios.post(`/saveUser`, args)
+        return axios(`/saveUser`, 'post', args)
     }
 
     static getOrderNum() {
-        return axios.get(`/myOrder/orderNum`)
+        return axios(`/myOrder/orderNum`, 'get')
     }
 
     static comment({ ...args }) {
-        return axios.post(`/goodsOne/comment`, args)
+        return axios(`/goodsOne/comment`, 'post',args)
     }
     // ===============================================================================================================
     /**
@@ -140,40 +140,40 @@ export default class Api {
      * tobeEvaluated        查询待评价      参数： page：页面
      * evaluateOne          查询单条评论    参数： id：商品id，_id：数据库的那条id
      */
-    static getAverify() { 
+    static getAverify() {
         return process.env.NODE_ENV === 'production' ? `/v1/verify?mt=${Math.random()}` : `/api/v1/verify?mt=${Math.random()}`
     }
 
     static getAddress() {
-        return axios.get(`/getAddress`)
+        return axios(`/getAddress`, 'get')
     }
 
     static getDefaultAddress() {
-        return axios.get(`/getDefaultAddress`)
+        return axios(`/getDefaultAddress`, 'get')
     }
 
     static setDefaultAddress(id) {
-        return axios.post(`/setDefaultAddress`, { id })
+        return axios(`/setDefaultAddress`, 'post', { id })
     }
 
     static postAddress({ ...args }) {
-        return axios.post(`/address`, args)
+        return axios(`/address`, 'post',args)
     }
 
     static deleteAddress(id) {
-        return axios.post('/deleteAddress', {
+        return axios('/deleteAddress', 'post', {
             id
         })
     }
 
     static getCollection(page = 1) {
-        return axios.get(`/collection/list`, {
+        return axios(`/collection/list`, 'get', {
             params: { page }
         })
     }
 
-    static register(nickname, password,verify,sms) {
-        return axios.post('/register', {
+    static register(nickname, password, verify, sms) {
+        return axios('/register', 'post', {
             nickname,
             password,
             verify,
@@ -181,8 +181,8 @@ export default class Api {
         })
     }
 
-    static login(nickname, password,verify,) {
-        return axios.post('/login', {
+    static login(nickname, password, verify, ) {
+        return axios('/login', 'post', {
             nickname,
             password,
             verify
@@ -190,29 +190,29 @@ export default class Api {
     }
 
     static codeMsg(phone) {
-        return axios.post('/sendCodeMsg', {
+        return axios('/sendCodeMsg', 'post',{
             phone
         })
     }
 
     static getMyOrder() {
-        return axios.get(`/myOrder`)
+        return axios(`/myOrder`, 'get')
     }
 
     static alreadyEvaluated(page = 1) {
-        return axios.get('/alreadyEvaluated', {
+        return axios('/alreadyEvaluated', 'get',{
             params: { page }
         })
     }
 
     static tobeEvaluated(page = 1) {
-        return axios.get('/tobeEvaluated', {
+        return axios('/tobeEvaluated', 'get',{
             params: { page }
         })
     }
 
     static evaluateOne(_id) {
-        return axios.post('/evaluateOne', {
+        return axios('/evaluateOne', 'post', {
             _id
         })
     }
