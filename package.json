@@ -7,7 +7,7 @@
     "build": "vue-cli-service build --modern"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "better-scroll": "^1.13.4",
     "cropperjs": "^1.4.3",
     "cssnano": "^4.1.8",
