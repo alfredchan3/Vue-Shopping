@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.3.0",
-    "@vue/cli-service": "^3.3.0",
+    "@vue/cli-service": "^5.0.8",
     "babel-plugin-import": "^1.11.0",
     "compression-webpack-plugin": "^2.0.0",
     "cssnano-preset-advanced": "^4.0.6",
